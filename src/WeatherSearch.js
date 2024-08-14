@@ -3,7 +3,8 @@ import axios from "axios";
 import "./App.css";
 
 export default function WeatherSearch() {
-  const [city, setCity] = useState("London"); // Set default city
+  const [city, setCity] = useState("London"); // City to fetch weather for
+  const [searchTerm, setSearchTerm] = useState(""); // Input field state
   const [loaded, setLoaded] = useState(false);
   const [weather, setWeather] = useState({});
 
@@ -19,7 +20,7 @@ export default function WeatherSearch() {
   }, []); // No dependencies mean fetchWeather is stable
 
   // Function to handle API response
-  function displayWeather(response) { 
+  function displayWeather(response) {
     setLoaded(true);
     setWeather({
       city: response.data.name,
@@ -34,25 +35,27 @@ export default function WeatherSearch() {
   // Function to handle form submission
   function handleSubmit(event) {
     event.preventDefault();
-    fetchWeather(city);
+    setCity(searchTerm); // Update city to the search term
+    fetchWeather(searchTerm); // Fetch weather data for the new city
   }
 
   // Function to handle input changes
   function updateCity(event) {
-    setCity(event.target.value);
+    setSearchTerm(event.target.value); // Update searchTerm instead of city
   }
 
-  // Fetch weather data for the default city when the component mounts or `city` changes
+  // Fetch weather data for the default city when the component mounts
   useEffect(() => {
     fetchWeather(city);
-  }, [city, fetchWeather]); // Include both `city` and `fetchWeather`
+  }, [city, fetchWeather]); // Include city and fetchWeather
 
   let form = (
     <form onSubmit={handleSubmit}>
       <input
         type="search"
         placeholder="Enter a city..."
-        onChange={updateCity}
+        onChange={updateCity} // Update searchTerm on change
+        value={searchTerm} // Control the input value
       />
       <button type="submit">Search</button>
     </form>
