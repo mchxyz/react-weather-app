@@ -9,7 +9,7 @@ export default function WeatherSearch() {
 
   // Function to fetch weather data
   function fetchWeather(city) {
-    let apiKey = "c03face7caa58a9b7ffa9f52b7238a93";
+    let apiKey = "a2dda52dce059eb8a14e95aaa0db6ab7";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayWeather);
   }
