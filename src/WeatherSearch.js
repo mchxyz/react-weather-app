@@ -1,18 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import "./App.css"; // Fixed the import path
+import "./App.css";
 
 export default function WeatherSearch() {
   const [city, setCity] = useState("London"); // Set default city
   const [loaded, setLoaded] = useState(false);
   const [weather, setWeather] = useState({});
 
-  // Function to fetch weather data
-  function fetchWeather(city) {
+  // Memoize fetchWeather using useCallback
+  const fetchWeather = useCallback((city) => {
     let apiKey = "a2dda52dce059eb8a14e95aaa0db6ab7";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(displayWeather);
-  }
+
+    axios.get(apiUrl).then(displayWeather)
+      .catch(error => {
+        console.error('Error fetching weather data:', error);
+      });
+  }, []); // No dependencies mean fetchWeather is stable
 
   // Function to handle API response
   function displayWeather(response) { 
@@ -38,10 +42,10 @@ export default function WeatherSearch() {
     setCity(event.target.value);
   }
 
-  // Fetch weather data for the default city when the component mounts
+  // Fetch weather data for the default city when the component mounts or `city` changes
   useEffect(() => {
     fetchWeather(city);
-  }, [city, fetchWeather]); // Empty dependency array means this effect runs once on mount
+  }, [city, fetchWeather]); // Include both `city` and `fetchWeather`
 
   let form = (
     <form onSubmit={handleSubmit}>
