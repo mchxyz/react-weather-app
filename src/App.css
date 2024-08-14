@@ -1,5 +1,6 @@
-.App {
+.App-Container {
   text-align: center;
+  background-color: #F9F7FD;
 }
 
 .App-logo {
@@ -13,7 +14,7 @@
   }
 }
 
-.App-header {
+.Weather-Container {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -21,7 +22,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #ffffff;
 }
 
 .App-link {
@@ -36,3 +37,8 @@
     transform: rotate(360deg);
   }
 }
+
+.WeatherInfo {
+  list-style-type: none;
+}
+
