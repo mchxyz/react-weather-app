@@ -41,7 +41,7 @@ export default function WeatherSearch() {
   // Fetch weather data for the default city when the component mounts
   useEffect(() => {
     fetchWeather(city);
-  }, []); // Empty dependency array means this effect runs once on mount
+  }, [city, fetchWeather]); // Empty dependency array means this effect runs once on mount
 
   let form = (
     <form onSubmit={handleSubmit}>
