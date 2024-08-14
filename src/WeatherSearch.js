@@ -15,7 +15,7 @@ export default function WeatherSearch() {
   }
 
   // Function to handle API response
-  function displayWeather(response) {
+  function displayWeather(response) { 
     setLoaded(true);
     setWeather({
       city: response.data.name,
@@ -70,15 +70,15 @@ export default function WeatherSearch() {
         </ul>
         <footer>
           This project was coded by{" "}
-          <a href="#" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/mchxyz" target="_blank" rel="noopener noreferrer">
             MA
           </a>{" "}
           and is{" "}
-          <a href="#" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/mchxyz/react-weather-app" target="_blank" rel="noopener noreferrer">
             open-sourced on GitHub
           </a>{" "}
           and{" "}
-          <a href="#" target="_blank" rel="noopener noreferrer">
+          <a href="https://she-codes-react-weather-app.netlify.app/" target="_blank" rel="noopener noreferrer">
             hosted on Netlify
           </a>
         </footer>

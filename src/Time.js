@@ -17,12 +17,9 @@ export default function App() {
     newDate.current = new Date();
     setCurrentHours(newDate.current.getHours());
     setCurrentMinutes(newDate.current.getMinutes());
-    // setCurrentSeconds(newDate.current.getSeconds());
   }, 1000);
   let currentTime = `${currentDay} ${currentHours}:${currentMinutes}`;
-//   let currentTime = `${currentHours} : ${currentMinutes} : ${currentSeconds}`;
   useEffect(() => {
-    // console.log(currentTime);
   });
 
   if (currentMinutes < 10) {
